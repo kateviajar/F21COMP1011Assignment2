@@ -1,0 +1,50 @@
+[
+  {
+    "country_code": "AR",
+    "code": "VCF",
+    "coordinates": {
+      "lat": -40.7,
+      "lon": -66.15
+    },
+    "name": "Valcheta",
+    "time_zone": "America/Argentina/Salta",
+    "name_translations": {
+      "en": "Valcheta"
+    },
+    "cases": {
+      "su": "Valcheta"
+    }
+  },
+  {
+    "country_code": "IN",
+    "code": "MAA",
+    "coordinates": {
+      "lat": 12.982267,
+      "lon": 80.16378
+    },
+    "name": "Chennai",
+    "time_zone": "Asia/Kolkata",
+    "name_translations": {
+      "en": "Chennai"
+    },
+    "cases": {
+      "su": "Chennai"
+    }
+  },
+  {
+    "country_code": "ZA",
+    "code": "AFD",
+    "coordinates": {
+      "lat": -33.583332,
+      "lon": 26.883333
+    },
+    "name": "Port Alfred",
+    "time_zone": "Africa/Johannesburg",
+    "name_translations": {
+      "en": "Port Alfred"
+    },
+    "cases": {
+      "su": "Port Alfred"
+    }
+  }
+  ]
