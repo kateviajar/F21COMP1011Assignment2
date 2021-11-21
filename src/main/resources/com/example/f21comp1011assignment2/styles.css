@@ -1,0 +1,31 @@
+.root{
+    -fx-background-color: #F5F5F5;
+    -fx-font-size: 15px;
+}
+
+.label{
+    -fx-text-fill: #004C99;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+}
+
+#header{
+    -fx-text-fill: #003366;
+    -fx-font-weight: bold;
+    -fx-font-size: 40px;
+}
+
+#subHeader{
+    -fx-text-fill: #212121;
+    -fx-font-size: 25px;
+}
+
+#headerBox{
+    -fx-background-color: #B3E5FC;
+}
+
+#pane{
+    -fx-background-image: url("maldives.jpeg");
+    -fx-background-position: center;
+    -fx-background-size: 800px 300px;
+}

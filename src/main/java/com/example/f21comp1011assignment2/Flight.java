@@ -2,7 +2,7 @@ package com.example.f21comp1011assignment2;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FlightPrice {
+public class Flight {
     private int price;
 
     private String airline;

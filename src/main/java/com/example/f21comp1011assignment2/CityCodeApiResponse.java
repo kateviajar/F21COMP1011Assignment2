@@ -22,6 +22,7 @@ public class CityCodeApiResponse {
 
     private HashMap<String, String> cases;
 
+    //setters and getters
     public String getCountryCode() {
         return countryCode;
     }
@@ -76,5 +77,12 @@ public class CityCodeApiResponse {
 
     public void setCases(HashMap<String, String> cases) {
         this.cases = cases;
+    }
+
+    /**
+     * This method returns true, if the selected continent is part of the timeZone String
+     */
+    public boolean contains(String selectedContinent){
+        return timeZone.contains(selectedContinent);
     }
 }

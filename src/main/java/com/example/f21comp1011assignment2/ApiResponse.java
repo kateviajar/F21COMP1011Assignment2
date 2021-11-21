@@ -1,14 +1,11 @@
 package com.example.f21comp1011assignment2;
 
-import com.google.gson.JsonObject;
-import org.json.simple.JSONObject;
-
 import java.util.HashMap;
 
 public class ApiResponse {
     private boolean success;
     private String currency;
-    private HashMap<String, HashMap<String, FlightPrice>> data;
+    private HashMap<String, HashMap<String, Flight>> data;
 
     //setters and getters
 
@@ -28,11 +25,11 @@ public class ApiResponse {
         this.currency = currency;
     }
 
-    public HashMap<String, HashMap<String, FlightPrice>> getData() {
+    public HashMap<String, HashMap<String, Flight>> getData() {
         return data;
     }
 
-    public void setData(HashMap<String, HashMap<String, FlightPrice>> data) {
+    public void setData(HashMap<String, HashMap<String, Flight>> data) {
         this.data = data;
     }
 }
