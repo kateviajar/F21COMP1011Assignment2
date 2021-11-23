@@ -1,6 +1,7 @@
 package com.example.f21comp1011assignment2;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class ApiResponse {
     private boolean success;
@@ -31,5 +32,9 @@ public class ApiResponse {
 
     public void setData(HashMap<String, HashMap<String, Flight>> data) {
         this.data = data;
+    }
+
+    public List<Flight> getFlights(){
+        return d
     }
 }

@@ -82,16 +82,21 @@ public class FlightSearchViewController implements Initializable {
     /**
      * This method get all the cities of selected continent
      */
-    private TreeSet<String> getCities(String selectedArea){
+    private TreeSet<String> getCities(String selectedContinent){
         TreeSet<String> cities = new TreeSet<>();
 
-        List<CityCodeApiResponse> filteredCityCodes = Arrays.asList(allCityCodes).stream()
-                .filter(city -> city.contains(selectedArea))
-                .collect(Collectors.toList());
+        cities.addAll(Arrays.asList(allCityCodes).stream()
+                .filter(city -> city.contains(selectedContinent))
+                .map(city -> city.getName()+"-"+city.getCode())
+                .collect(Collectors.toList()));
 
-        for (CityCodeApiResponse cityCode : filteredCityCodes){
-            cities.add(cityCode.getName()+"-"+cityCode.getCode());
-        }
+//        List<CityCodeApiResponse> filteredCityCodes = Arrays.asList(allCityCodes).stream()
+//                .filter(city -> city.contains(selectedContinent))
+//                .collect(Collectors.toList());
+//
+//        for (CityCodeApiResponse cityCode : filteredCityCodes){
+//            cities.add(cityCode.getName()+"-"+cityCode.getCode());
+//        }
         return cities;
     }
 
@@ -103,6 +108,7 @@ public class FlightSearchViewController implements Initializable {
         String selectedFromContinent = fromContinentComboBox.getSelectionModel().getSelectedItem();
         String selectedToContinent = toContinentComboBox.getSelectionModel().getSelectedItem();
 
+        //check if the comboBox is selected
         if (selectedFromContinent != null){
             fromCityComboBox.getItems().addAll(getCities(selectedFromContinent));
         }
