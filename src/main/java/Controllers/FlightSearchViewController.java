@@ -149,17 +149,22 @@ public class FlightSearchViewController implements Initializable {
         String departureDate = departDatePicker.getValue().toString();
         String returnDate = returnDatePicker.getValue().toString();
 
-        ApiResponse apiResponse = APIUtility.getFlightFromAPI(nonStopCheckBox.isSelected(),origin,destination,departureDate,returnDate);
+        if (origin != null && destination != null){
+            ApiResponse apiResponse = APIUtility.getFlightFromAPI(nonStopCheckBox.isSelected(),origin,destination,departureDate,returnDate);
 
-        if (apiResponse.getData().isEmpty()){
-            //flight isn't found
-            messageLabel.setText("Flight is not found");
-            setFlightFound(false, false);
+            if (apiResponse.getData().isEmpty()){
+                //flight isn't found
+                messageLabel.setText("Flight is not found");
+                setFlightFound(false, false);
+            }
+            else{
+                flightListView.getItems().addAll(apiResponse.getFlights());
+                messageLabel.setText("Flexible search result:");
+                setFlightFound(true, false);
+            }
         }
-        else{
-            flightListView.getItems().addAll(apiResponse.getFlights());
-            messageLabel.setText("Flexible search result:");
-            setFlightFound(true, false);
+        else {
+            messageLabel.setText("origin & destination are required");
         }
     }
 

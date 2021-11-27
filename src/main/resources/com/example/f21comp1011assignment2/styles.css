@@ -36,6 +36,7 @@
     -fx-background-image: url("moraine-lake.jpeg");
     -fx-background-position: center;
     -fx-background-size: 800px 300px;
+    -fx-opacity: 0.8;
 }
 
 #message{
