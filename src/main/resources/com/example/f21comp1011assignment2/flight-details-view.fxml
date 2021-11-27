@@ -47,7 +47,7 @@
                   <VBox alignment="CENTER" spacing="20.0">
                      <children>
                         <ImageView fx:id="logoImageView" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button mnemonicParsing="false" text="Return to Search" />
+                        <Button mnemonicParsing="false" onAction="#backToSearch" text="Return to Search" />
                      </children>
                   </VBox>
                </children>
@@ -57,7 +57,13 @@
             <VBox id="headerBox" alignment="CENTER" prefHeight="90.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                <children>
                   <Label id="header" text="Flight Details" />
-                  <Label id="subHeader" fx:id="destinationLabel" text="Label" />
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Label id="subHeader" fx:id="originLabel" text="Label" />
+                        <Label text="to" />
+                        <Label id="subHeader" fx:id="destinationLabel" text="Label" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </top>

@@ -16,13 +16,25 @@ public class SceneChanger {
      * This method receives selected Flight object and calls the loadFlightDetails method,
      * then show the details
      */
-    public static void changeScenes(ActionEvent event, String fxmlFile, Flight flight) throws IOException {
+    public static void changeScenes(ActionEvent event, String fxmlFile, Flight flight, String origin, String destination) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFile));
         Scene scene = new Scene(fxmlLoader.load());
 
         //Get FlightDetailsViewController to call the loadFlightDetails method
         FlightDetailsViewController controller = fxmlLoader.getController();
-        controller.loadFlightDetails(flight);
+        controller.loadFlightDetails(flight, origin, destination);
+
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * This method simply change scene
+     */
+    public static void changeScenes(ActionEvent event, String fxmlFile) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFile));
+        Scene scene = new Scene(fxmlLoader.load());
 
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);

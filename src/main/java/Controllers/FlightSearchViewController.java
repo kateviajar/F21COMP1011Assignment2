@@ -170,13 +170,16 @@ public class FlightSearchViewController implements Initializable {
 
     /**
      * This method get all non-repeated and sorted continents from IATA City Code
+     * some invalid data are filtered out
      */
     private TreeSet<String> getContinents(){
         TreeSet<String> continents = new TreeSet<>();
+        ArrayList<String> nonValidData = new ArrayList<>();
+        nonValidData.addAll(Arrays.asList("Brazil", "Etc", "US"));
 
         for (CityCodeApiResponse cityCode : allCityCodes){
             String[] continent = cityCode.getTimeZone().split("/");
-            if (continent[0] != null){
+            if (continent[0] != null && !nonValidData.contains(continent[0])){
                 continents.add(continent[0]);
             }
         }
@@ -203,8 +206,14 @@ public class FlightSearchViewController implements Initializable {
      */
     @FXML
     private void getFlightDetails(ActionEvent event) throws IOException {
+        //get origin and destination cities
+        String origin = fromCityComboBox.getSelectionModel().getSelectedItem();
+        String destination = toCityComboBox.getSelectionModel().getSelectedItem();
+
+        // get the selected flight
         Flight flight = flightListView.getSelectionModel().getSelectedItem();
-        SceneChanger.changeScenes(event, "flight-details-view.fxml", flight);
+
+        SceneChanger.changeScenes(event, "flight-details-view.fxml", flight, origin, destination);
     }
 
 
