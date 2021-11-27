@@ -41,9 +41,26 @@ public class APIUtility {
      * this method will call the Travelpayouts API with the search conditions:
      * origin, destination, departure and return dates
      */
-    public static ApiResponse getFlightFromAPI(String origin, String destination, String departureDate, String returnDate) throws IOException, InterruptedException {
-        String uri = "http://api.travelpayouts.com/v1/prices/cheap?token=2ee1d384fb0e5144acd54ed181cccc0b&currency=CAD&origin="+ origin
-                + "&destination=" + destination + "&depart_date="+ departureDate + "&return_date=" + returnDate;
+    public static ApiResponse getFlightFromAPI(boolean nonstop, String origin, String destination, String departureDate, String returnDate) throws IOException, InterruptedException {
+        //Only need a city code for origin and destination
+        origin = origin.substring(origin.length()-3);
+        destination = destination.substring(destination.length()-3);
+
+        //get yyyy-MM as departure date and return date
+        departureDate = departureDate.substring(0, 7);
+        returnDate = returnDate.substring(0, 7);
+
+        //check if nonstop
+        String searchTerm = "";
+        if (nonstop){
+            searchTerm = "direct";
+        }
+        else {
+            searchTerm = "cheap";
+        }
+
+        String uri = "http://api.travelpayouts.com/v1/prices/"+ searchTerm +"?token=2ee1d384fb0e5144acd54ed181cccc0b&currency=CAD&origin="
+                + origin + "&destination=" + destination + "&depart_date="+ departureDate + "&return_date=" + returnDate;
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(uri)).build();

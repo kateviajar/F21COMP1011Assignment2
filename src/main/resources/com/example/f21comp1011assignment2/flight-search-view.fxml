@@ -58,7 +58,7 @@
                         <Label text="Return" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                         <DatePicker fx:id="returnDatePicker" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                         <CheckBox fx:id="nonStopCheckBox" mnemonicParsing="false" text="Non-Stop" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Button fx:id="searchButton" mnemonicParsing="false" text="Search flights" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#getSearchFlights" text="Search flights" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <BorderPane id="pane" prefHeight="300.0" prefWidth="800.0">

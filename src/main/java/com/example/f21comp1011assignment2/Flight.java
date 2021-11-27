@@ -72,7 +72,7 @@ public class Flight {
      * Override the toString to display flight information
      */
     public String toString(){
-        return String.format("%s-%d Departure: %s, Return: %s - Price $%d CAD", airline, flightNumber,
+        return String.format("%s-%d  Departure: %s, Return: %s --- Price $%d CAD", airline, flightNumber,
                 departureAt.substring(0,10), returnAt.substring(0,10), price);
     }
 

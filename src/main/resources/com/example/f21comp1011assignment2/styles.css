@@ -29,3 +29,8 @@
     -fx-background-position: center;
     -fx-background-size: 800px 300px;
 }
+
+#message{
+    -fx-text-fill: #eee;
+    -fx-font-size: 25px;
+}

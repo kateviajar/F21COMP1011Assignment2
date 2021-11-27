@@ -1,6 +1,7 @@
 package Controllers;
 
 import Utilities.APIUtility;
+import com.example.f21comp1011assignment2.ApiResponse;
 import com.example.f21comp1011assignment2.CityCodeApiResponse;
 import com.example.f21comp1011assignment2.Flight;
 import javafx.fxml.FXML;
@@ -61,8 +62,8 @@ public class FlightSearchViewController implements Initializable {
             e.printStackTrace();
         }
 
-        //set the listView invisible before searching
-        flightListView.setVisible(false);
+        //set the listView and detailsButton invisible before searching
+        setFlightFound(false,false);
 
         //empty the messageLabel
         messageLabel.setText("");
@@ -78,6 +79,7 @@ public class FlightSearchViewController implements Initializable {
         fromContinentComboBox.getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldValue, selectedContinent) -> {
                     if(selectedContinent != null){
+                        fromCityComboBox.getItems().clear();
                         fromCityComboBox.setPromptText("Select a City");
                         fromCityComboBox.getItems().addAll(getCities(selectedContinent));
                     }
@@ -86,6 +88,7 @@ public class FlightSearchViewController implements Initializable {
         toContinentComboBox.getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldValue, selectedContinent) -> {
                     if (selectedContinent != null){
+                        toCityComboBox.getItems().clear();
                         toCityComboBox.setPromptText("Select a City");
                         toCityComboBox.getItems().addAll(getCities(selectedContinent));
                     }
@@ -117,7 +120,50 @@ public class FlightSearchViewController implements Initializable {
             }
         });
 
+        //addListener to the list view, if a flight is selected, show details button
+        flightListView.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, oldFlight, selectedFlight) -> {
+                    setFlightFound(true, true);
+                });
     }
+
+    /**
+     * This method will get search result and display in the List View if any
+     */
+    @FXML
+    private void getSearchFlights() throws IOException, InterruptedException {
+        //clear the list view first
+        flightListView.getItems().clear();
+
+        //get search terms
+        String origin = fromCityComboBox.getSelectionModel().getSelectedItem();
+        String destination = toCityComboBox.getSelectionModel().getSelectedItem();
+        String departureDate = departDatePicker.getValue().toString();
+        String returnDate = returnDatePicker.getValue().toString();
+
+        ApiResponse apiResponse = APIUtility.getFlightFromAPI(nonStopCheckBox.isSelected(),origin,destination,departureDate,returnDate);
+
+        if (apiResponse.getData().isEmpty()){
+            //flight isn't found
+            messageLabel.setText("Flight is not found");
+            setFlightFound(false, false);
+        }
+        else{
+            flightListView.getItems().addAll(apiResponse.getFlights());
+            messageLabel.setText("Flexible search result:");
+            setFlightFound(true, false);
+        }
+    }
+
+    /**
+     * This method will set visual elements to be visible or not
+     * depending on the search result
+     */
+    private void setFlightFound(boolean flightFound, boolean flightSelected){
+        flightListView.setVisible(flightFound);
+        flightDetailsButton.setVisible(flightSelected);
+    }
+
 
     /**
      * This method get all non-repeated and sorted continents from IATA City Code

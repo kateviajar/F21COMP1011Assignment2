@@ -7,16 +7,16 @@ import java.io.IOException;
 public class MainTest {
     public static void main(String[] args) {
 //        ApiResponse result = APIUtility.getFlightJsonFile();
-        ApiResponse result = null;
-        try {
-            result = APIUtility.getFlightFromTravelAPI("YVR","NYC","2021-12","2021-12");
+//        ApiResponse result = null;
+//        try {
+//            result = APIUtility.getFlightFromAPI("YVR","NYC","2021-12","2021-12");
 //            System.out.println(result);
-            System.out.println(result.getFlights());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//            System.out.println(result.getFlights());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        CityCodeApiResponse[] cityCodeResult = APIUtility.getCityCodeJsonFile();
@@ -29,5 +29,10 @@ public class MainTest {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
+
+        String str = "abcde-YYZ";
+        str = str.substring(str.length()-3);
+        System.out.println(str);
+
     }
 }
