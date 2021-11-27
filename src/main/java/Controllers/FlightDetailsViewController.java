@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 public class FlightDetailsViewController implements Initializable {
 
     @FXML
+    private Label destinationLabel;
+
+    @FXML
     private Label priceLabel;
 
     @FXML
@@ -36,14 +39,14 @@ public class FlightDetailsViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //hardcode
-        try {
-            ApiResponse apiResponse = APIUtility.getFlightFromAPI(false,"LAX","NYC","2021-11-27", "2021-12-12");
-            loadFlightDetails(apiResponse.getFlights().get(0));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            ApiResponse apiResponse = APIUtility.getFlightFromAPI(false,"LAX","NYC","2021-11-27", "2021-12-12");
+//            loadFlightDetails(apiResponse.getFlights().get(0));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
     }
 

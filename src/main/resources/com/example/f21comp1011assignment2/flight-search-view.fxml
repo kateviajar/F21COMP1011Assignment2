@@ -66,14 +66,14 @@
                         <ListView fx:id="flightListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
                      </center>
                      <top>
-                        <Label fx:id="messageLabel" text="message" BorderPane.alignment="CENTER">
+                        <Label id="message" fx:id="messageLabel" text="message" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets />
                            </BorderPane.margin>
                         </Label>
                      </top>
                      <bottom>
-                        <Button fx:id="flightDetailsButton" mnemonicParsing="false" text="Flight Details" BorderPane.alignment="CENTER" />
+                        <Button fx:id="flightDetailsButton" mnemonicParsing="false" onAction="#getFlightDetails" text="Flight Details" BorderPane.alignment="CENTER" />
                      </bottom>
                      <VBox.margin>
                         <Insets />

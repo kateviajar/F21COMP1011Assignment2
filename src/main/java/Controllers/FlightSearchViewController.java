@@ -1,9 +1,11 @@
 package Controllers;
 
 import Utilities.APIUtility;
+import Utilities.SceneChanger;
 import com.example.f21comp1011assignment2.ApiResponse;
 import com.example.f21comp1011assignment2.CityCodeApiResponse;
 import com.example.f21comp1011assignment2.Flight;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -192,15 +194,19 @@ public class FlightSearchViewController implements Initializable {
                 .map(city -> city.getName()+"-"+city.getCode())
                 .collect(Collectors.toList()));
 
-//        List<CityCodeApiResponse> filteredCityCodes = Arrays.asList(allCityCodes).stream()
-//                .filter(city -> city.contains(selectedContinent))
-//                .collect(Collectors.toList());
-//
-//        for (CityCodeApiResponse cityCode : filteredCityCodes){
-//            cities.add(cityCode.getName()+"-"+cityCode.getCode());
-//        }
         return cities;
     }
+
+    /**
+     * This method will pass the selected flight object to the loadFlightDetails method
+     * through changeScenes() method, then show the flight-details-view
+     */
+    @FXML
+    private void getFlightDetails(ActionEvent event) throws IOException {
+        Flight flight = flightListView.getSelectionModel().getSelectedItem();
+        SceneChanger.changeScenes(event, "flight-details-view.fxml", flight);
+    }
+
 
     /**
      * use addListener instead of the method

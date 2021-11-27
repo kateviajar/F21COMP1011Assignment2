@@ -1,6 +1,7 @@
 .root{
     -fx-background-color: #F5F5F5;
     -fx-font-size: 15px;
+    -fx-font-family: Rockwell;
 }
 
 .label{
@@ -16,8 +17,9 @@
 }
 
 #subHeader{
-    -fx-text-fill: #212121;
+    -fx-text-fill: #EC7063;
     -fx-font-size: 25px;
+    -fx-font-family: "Andale Mono";
 }
 
 #headerBox{
