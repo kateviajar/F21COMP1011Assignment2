@@ -104,8 +104,8 @@ public class FlightSearchViewController implements Initializable {
         //addListener to return DatePicker, the return date cannot be earlier than the departure date or current date
         returnDatePicker.valueProperty().addListener((observableValue, oldDate, newDate) -> {
             if (newDate.compareTo(departDatePicker.getValue()) < 0 || newDate.compareTo(LocalDate.now()) < 0){
-                returnDatePicker.setValue(departDatePicker.getValue());
-                messageLabel.setText("Please check departure/return date");
+                returnDatePicker.setValue(oldDate);
+                messageLabel.setText("Please select after the departure date");
             }
             else {
                 messageLabel.setText("");
@@ -114,9 +114,14 @@ public class FlightSearchViewController implements Initializable {
 
         //addListener to depart DatePicker, if the departure date cannot be later than the return date or earlier than current date
         departDatePicker.valueProperty().addListener((observableValue, oldDate, newDate) -> {
-            if(newDate.compareTo(returnDatePicker.getValue()) > 0 || newDate.compareTo(LocalDate.now()) < 0){
-                departDatePicker.setValue(returnDatePicker.getValue());
+            if(newDate.compareTo(returnDatePicker.getValue()) > 0){
+                //if the departure date is later than the return date, adjust the return date
+                returnDatePicker.setValue(newDate);
                 messageLabel.setText("Please check departure/return date");
+            }
+            else if(newDate.compareTo(LocalDate.now()) < 0){
+                departDatePicker.setValue(oldDate);
+                messageLabel.setText("cannot select ast dates");
             }
             else {
                 messageLabel.setText("");

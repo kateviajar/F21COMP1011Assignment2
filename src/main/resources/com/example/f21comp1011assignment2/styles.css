@@ -42,3 +42,22 @@
     -fx-text-fill: #F1C40F;
     -fx-font-size: 25px;
 }
+
+#details{
+    -fx-text-fill: #CB4335;
+}
+
+.button{
+    -fx-background-color: #48C9B0;
+    -fx-text-fill: #F5F5F5;
+    -fx-font-size: 20px;
+}
+
+.button:hover{
+    -fx-background-color: #F4D03F;
+}
+
+.check-box{
+    -fx-text-fill: #004C99;
+    -fx-font-size: 20px;
+}

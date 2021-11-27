@@ -33,15 +33,15 @@
                     </rowConstraints>
                      <children>
                         <Label text="Airline :" />
-                        <Label fx:id="airlineLabel" text="Label" GridPane.columnIndex="1" />
+                        <Label id="details" fx:id="airlineLabel" text="Label" GridPane.columnIndex="1" />
                         <Label text="Flight Number :" GridPane.rowIndex="1" />
-                        <Label fx:id="flightNumLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label id="details" fx:id="flightNumLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Departure Time :" GridPane.rowIndex="2" />
-                        <Label fx:id="departTimeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label id="details" fx:id="departTimeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label text="Return Time :" GridPane.rowIndex="3" />
-                        <Label fx:id="returnTimeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label id="details" fx:id="returnTimeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label text="Price :" GridPane.rowIndex="4" />
-                        <Label fx:id="priceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label id="details" fx:id="priceLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <VBox alignment="CENTER" spacing="20.0">
