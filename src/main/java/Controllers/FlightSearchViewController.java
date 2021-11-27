@@ -98,6 +98,7 @@ public class FlightSearchViewController implements Initializable {
         departDatePicker.setValue(LocalDate.now());
         returnDatePicker.setValue(LocalDate.now());
 
+
         //addListener to return DatePicker, the return date cannot be earlier than the departure date or current date
         returnDatePicker.valueProperty().addListener((observableValue, oldDate, newDate) -> {
             if (newDate.compareTo(departDatePicker.getValue()) < 0 || newDate.compareTo(LocalDate.now()) < 0){

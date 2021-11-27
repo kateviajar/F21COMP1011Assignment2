@@ -30,6 +30,12 @@
     -fx-background-size: 800px 300px;
 }
 
+#pane1{
+    -fx-background-image: url("moraine-lake.jpeg");
+    -fx-background-position: center;
+    -fx-background-size: 800px 300px;
+}
+
 #message{
     -fx-text-fill: #eee;
     -fx-font-size: 25px;

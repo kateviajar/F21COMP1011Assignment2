@@ -76,4 +76,20 @@ public class Flight {
                 departureAt.substring(0,10), returnAt.substring(0,10), price);
     }
 
+    /**
+     * This method will format the departure date and return date
+     * as "yyyy-MM-dd   hh:mm"
+     * @return
+     */
+    public String getFlightDateTime(String dateTime){
+        return String.format("%s   %s", dateTime.substring(0,10), dateTime.substring(11, 16));
+    }
+
+    /**
+     * This method will format the price
+     */
+    public String getFormattedPrice(){
+        return String.format("$%d CAD", price);
+    }
+
 }
