@@ -1,12 +1,15 @@
-package com.example.f21comp1011assignment2;
+package Controllers;
 
+import Utilities.APIUtility;
+import com.example.f21comp1011assignment2.CityCodeApiResponse;
+import com.example.f21comp1011assignment2.Flight;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,13 +42,19 @@ public class FlightSearchViewController implements Initializable {
     @FXML
     private ListView<Flight> flightListView;
 
-    private CityCodeApiResponse[] allCityCodes;
+    @FXML
+    private Button flightDetailsButton;
+
+    @FXML
+    private Label messageLabel;
+
+    public static CityCodeApiResponse[] allCityCodes;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //get all the city codes from Travel API
         try {
-            allCityCodes = APIUtility.getCityCodeFromTravelAPI();
+            allCityCodes = APIUtility.getCityCodeFromAPI();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -55,12 +64,58 @@ public class FlightSearchViewController implements Initializable {
         //set the listView invisible before searching
         flightListView.setVisible(false);
 
+        //empty the messageLabel
+        messageLabel.setText("");
+
         //configure continentComboBoxes
         fromContinentComboBox.getItems().addAll(getContinents());
         toContinentComboBox.getItems().addAll(getContinents());
 
-        //addListener to combobox?
+        fromContinentComboBox.setPromptText("Select an Area");
+        toContinentComboBox.setPromptText("Select an Area");
 
+        //addListener to comboBoxes: if the continent is selected, then show the related cities in cityComboBox
+        fromContinentComboBox.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, oldValue, selectedContinent) -> {
+                    if(selectedContinent != null){
+                        fromCityComboBox.setPromptText("Select a City");
+                        fromCityComboBox.getItems().addAll(getCities(selectedContinent));
+                    }
+                });
+
+        toContinentComboBox.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, oldValue, selectedContinent) -> {
+                    if (selectedContinent != null){
+                        toCityComboBox.setPromptText("Select a City");
+                        toCityComboBox.getItems().addAll(getCities(selectedContinent));
+                    }
+                });
+
+        //set depart and return DatePickers to current date
+        departDatePicker.setValue(LocalDate.now());
+        returnDatePicker.setValue(LocalDate.now());
+
+        //addListener to return DatePicker, the return date cannot be earlier than the departure date or current date
+        returnDatePicker.valueProperty().addListener((observableValue, oldDate, newDate) -> {
+            if (newDate.compareTo(departDatePicker.getValue()) < 0 || newDate.compareTo(LocalDate.now()) < 0){
+                returnDatePicker.setValue(departDatePicker.getValue());
+                messageLabel.setText("Please check departure/return date");
+            }
+            else {
+                messageLabel.setText("");
+            }
+        });
+
+        //addListener to depart DatePicker, if the departure date cannot be later than the return date or earlier than current date
+        departDatePicker.valueProperty().addListener((observableValue, oldDate, newDate) -> {
+            if(newDate.compareTo(returnDatePicker.getValue()) > 0 || newDate.compareTo(LocalDate.now()) < 0){
+                departDatePicker.setValue(returnDatePicker.getValue());
+                messageLabel.setText("Please check departure/return date");
+            }
+            else {
+                messageLabel.setText("");
+            }
+        });
 
     }
 
@@ -101,6 +156,7 @@ public class FlightSearchViewController implements Initializable {
     }
 
     /**
+     * use addListener instead of the method
      * This method will populate the city combobox based on the continent selected
      */
     @FXML
@@ -110,9 +166,11 @@ public class FlightSearchViewController implements Initializable {
 
         //check if the comboBox is selected
         if (selectedFromContinent != null){
+            fromCityComboBox.setPromptText("Select a City");
             fromCityComboBox.getItems().addAll(getCities(selectedFromContinent));
         }
         if (selectedToContinent != null){
+            toCityComboBox.setPromptText("Select a City");
             toCityComboBox.getItems().addAll(getCities(selectedToContinent));
         }
     }

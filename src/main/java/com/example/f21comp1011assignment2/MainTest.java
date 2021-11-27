@@ -1,5 +1,7 @@
 package com.example.f21comp1011assignment2;
 
+import Utilities.APIUtility;
+
 import java.io.IOException;
 
 public class MainTest {
@@ -8,12 +10,14 @@ public class MainTest {
         ApiResponse result = null;
         try {
             result = APIUtility.getFlightFromTravelAPI("YVR","NYC","2021-12","2021-12");
-            System.out.println(result);
+//            System.out.println(result);
+            System.out.println(result.getFlights());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
 //        CityCodeApiResponse[] cityCodeResult = APIUtility.getCityCodeJsonFile();
 //        CityCodeApiResponse[] cityCodeResult = null;

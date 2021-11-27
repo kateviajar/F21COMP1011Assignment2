@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.f21comp1011assignment2.FlightSearchViewController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FlightSearchViewController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -46,11 +46,11 @@
                     </rowConstraints>
                      <children>
                         <Label text="From" />
-                        <ComboBox fx:id="fromContinentComboBox" onAction="#populateCities" prefHeight="29.0" prefWidth="188.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="fromContinentComboBox" prefHeight="29.0" prefWidth="188.0" GridPane.columnIndex="1" />
                         <Label text="City" GridPane.columnIndex="2" />
                         <ComboBox fx:id="fromCityComboBox" prefHeight="29.0" prefWidth="196.0" GridPane.columnIndex="3" />
                         <Label text="To" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="toContinentComboBox" onAction="#populateCities" prefHeight="29.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="toContinentComboBox" prefHeight="29.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="City" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <ComboBox fx:id="toCityComboBox" prefHeight="29.0" prefWidth="197.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <Label text="Depart" GridPane.rowIndex="2" />
@@ -63,8 +63,24 @@
                   </GridPane>
                   <BorderPane id="pane" prefHeight="300.0" prefWidth="800.0">
                      <center>
-                        <ListView fx:id="flightListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+                        <ListView fx:id="flightListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
                      </center>
+                     <top>
+                        <Label fx:id="messageLabel" text="message" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                        </Label>
+                     </top>
+                     <bottom>
+                        <Button fx:id="flightDetailsButton" mnemonicParsing="false" text="Flight Details" BorderPane.alignment="CENTER" />
+                     </bottom>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
                   </BorderPane>
                </children>
                <padding>

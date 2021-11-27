@@ -1,5 +1,7 @@
-package com.example.f21comp1011assignment2;
+package Utilities;
 
+import com.example.f21comp1011assignment2.ApiResponse;
+import com.example.f21comp1011assignment2.CityCodeApiResponse;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -39,7 +41,7 @@ public class APIUtility {
      * this method will call the Travelpayouts API with the search conditions:
      * origin, destination, departure and return dates
      */
-    public static ApiResponse getFlightFromTravelAPI(String origin, String destination, String departureDate, String returnDate) throws IOException, InterruptedException {
+    public static ApiResponse getFlightFromAPI(String origin, String destination, String departureDate, String returnDate) throws IOException, InterruptedException {
         String uri = "http://api.travelpayouts.com/v1/prices/cheap?token=2ee1d384fb0e5144acd54ed181cccc0b&currency=CAD&origin="+ origin
                 + "&destination=" + destination + "&depart_date="+ departureDate + "&return_date=" + returnDate;
 
@@ -86,7 +88,7 @@ public class APIUtility {
     /**
      * this method will read the city code from Travelpayouts API
      */
-    public static CityCodeApiResponse[] getCityCodeFromTravelAPI() throws IOException, InterruptedException {
+    public static CityCodeApiResponse[] getCityCodeFromAPI() throws IOException, InterruptedException {
         String uri = "https://api.travelpayouts.com/data/en/cities.json?_gl=1*ky03y1*_ga*MTIyNjk0MDU1My4xNjM3Mzc5NjU1*_ga_1WLL0NEBEH*MTYzNzM4MDA3My4xLjEuMTYzNzM4MjcyNy4yNw..";
 
         HttpClient client = HttpClient.newHttpClient();
