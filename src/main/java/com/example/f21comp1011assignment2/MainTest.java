@@ -30,9 +30,15 @@ public class MainTest {
 //            e.printStackTrace();
 //        }
 
-        String str = "abcde-YYZ";
-        str = str.substring(str.length()-3);
-        System.out.println(str);
+        try {
+            PopularFlights flights = APIUtility.getPopularFlightsFromAPI("YVR");
+            System.out.println(flights.getPopularFlightsInfo().get(0).getDestination());
+            System.out.println(flights.getPopularFlightsInfo().get(0).getDestinationCity());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }

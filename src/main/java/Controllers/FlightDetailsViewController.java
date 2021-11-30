@@ -4,10 +4,13 @@ import Utilities.APIUtility;
 import Utilities.SceneChanger;
 import com.example.f21comp1011assignment2.ApiResponse;
 import com.example.f21comp1011assignment2.Flight;
+import com.example.f21comp1011assignment2.PopularFlightInfo;
+import com.example.f21comp1011assignment2.PopularFlights;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -40,6 +43,9 @@ public class FlightDetailsViewController implements Initializable {
 
     @FXML
     private Label returnTimeLabel;
+
+    @FXML
+    private ListView<PopularFlightInfo> destinationListView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,6 +81,20 @@ public class FlightDetailsViewController implements Initializable {
         String url = "http://pics.avs.io/180/180/" + flight.getAirline() + ".png";
 
         logoImageView.setImage(new Image(url));
+
+        //get the popular destinations by passing origin
+        destinationListView.getItems().clear();
+        PopularFlights popularFlights = null;
+        try {
+            popularFlights = APIUtility.getPopularFlightsFromAPI(origin);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        destinationListView.getItems().addAll(popularFlights.getPopularFlightsInfo());
+
     }
 
     /**
